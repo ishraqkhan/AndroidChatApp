@@ -1,6 +1,7 @@
 package com.example.ishraq.androidchatapp.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.example.ishraq.androidchatapp.Holder.QBUnreadMessageHolder;
 import com.example.ishraq.androidchatapp.R;
 import com.quickblox.chat.model.QBChatDialog;
 
@@ -53,12 +55,13 @@ public class ChatDialogAdapters extends BaseAdapter{
             view = layoutInflater.inflate(R.layout.list_chat_dialog, null);
 
             TextView text_title, text_messsage;
-            ImageView imageView;
+            ImageView imageView, image_unread;
 
             text_title = (TextView) view.findViewById(R.id.list_chat_dialog_title);
             text_messsage = (TextView) view.findViewById(R.id.list_chat_dialog_message);
 
             imageView = (ImageView) view.findViewById(R.id.image_chatDialog);
+            image_unread = (ImageView) view.findViewById(R.id.image_unread);
 
             text_title.setText(qbChatDialogs.get(position).getName());
             text_messsage.setText(qbChatDialogs.get(position).getLastMessage());
@@ -75,7 +78,14 @@ public class ChatDialogAdapters extends BaseAdapter{
                     randColor);
             imageView.setImageDrawable(textDrawable);
 
-
+            //Set the number of unread messages
+            TextDrawable.IBuilder unread_messages = TextDrawable.builder().beginConfig().withBorder(4).endConfig().round();
+            int unread_count = QBUnreadMessageHolder.getInstance().getBundle().getInt(qbChatDialogs.get(position).getDialogId());
+            if(unread_count > 0){
+                TextDrawable unread_drawable = unread_messages.build(""+unread_count,
+                        Color.BLUE);
+                image_unread.setImageDrawable(unread_drawable);
+            }
 
         }
 

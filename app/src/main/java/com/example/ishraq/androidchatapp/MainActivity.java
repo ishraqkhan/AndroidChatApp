@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("user", user);
                         intent.putExtra("password", password);
                         startActivity(intent);
+                        finish(); //close login activity after login goes through
                     }
 
                     @Override

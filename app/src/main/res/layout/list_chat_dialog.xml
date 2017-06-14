@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:padding="16dp"
+    android:padding="8dp"
     android:layout_height="wrap_content">
 
     <ImageView
+        android:layout_alignParentLeft="true"
         android:id="@+id/image_chatDialog"
         android:layout_width="60dp"
         android:layout_height="60dp" />
     
     <LinearLayout
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/image_chatDialog"
+        android:layout_centerVertical="true"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,6 +32,12 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:id="@+id/image_unread"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
 
 
-</LinearLayout>
+
+</RelativeLayout>

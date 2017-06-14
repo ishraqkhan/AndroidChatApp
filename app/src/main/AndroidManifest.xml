@@ -19,7 +19,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ChatDialogsActivity" />
         <activity android:name=".ChatMessageActivity" />
-        <activity android:name=".ListUsersActivity"></activity>
+        <activity android:name=".ListUsersActivity" />
+        <activity android:name=".UserProfileActivity"></activity>
     </application>
 
 </manifest>

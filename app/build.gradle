@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.example.ishraq.prochatapp"
+        applicationId "com.example.ishraq.androidchatapp"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -35,6 +35,7 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     testCompile 'junit:junit:4.12'
 }
+
 
 
 

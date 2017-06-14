@@ -25,4 +25,8 @@ public class Common {
 
         return name.toString();
     }
+
+    public static boolean isNullOrEmptyString(String content){
+        return (content == null || content.trim().isEmpty());
+    }
 }
