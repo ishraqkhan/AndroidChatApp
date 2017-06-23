@@ -4,5 +4,4 @@ Features included:
 Private Chat,
 Group Chat,
 Unread Message count,
-Online user count,
-etc.
+Online user count
