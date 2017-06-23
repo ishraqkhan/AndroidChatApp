@@ -3,6 +3,6 @@ Messaging app that I am currently working on in my free time, learning how to us
 Features included:
 Private Chat,
 Group Chat,
-Typing status,
-Notifications,
+Unread Message count,
+Online user count,
 etc.
