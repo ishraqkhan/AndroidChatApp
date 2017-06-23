@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +50,46 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
     FloatingActionButton fab;
     Toolbar toolbar;
 
+    //Final varibales
+    int contextMenuInfoPosition = -1;
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        contextMenuInfoPosition = info.position;
+
+        switch(item.getItemId()){
+            case R.id.context_delete_dialog:
+                deleteDialog();
+                break;
+        }
+
+        return true;
+    }
+
+    private void deleteDialog() {
+        final QBChatDialog chatDialog = (QBChatDialog)listChatDialogs.getAdapter().getItem(contextMenuInfoPosition);
+        QBRestChatService.deleteDialog(chatDialog.getDialogId(), false).performAsync(new QBEntityCallback<Void>() {
+            @Override
+            public void onSuccess(Void aVoid, Bundle bundle) {
+                QBChatDialogHolder.getInstance().removeDialog(chatDialog.getDialogId());
+                ChatDialogAdapters adapter = new ChatDialogAdapters(getBaseContext(), QBChatDialogHolder.getInstance().getAllChatDialogs());
+                listChatDialogs.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(QBResponseException e) {
+                Toast.makeText(getBaseContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.chat_dialog_context_menu, menu);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chat_dialog_menu, menu);
@@ -86,6 +127,9 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
         createSessionForChat();
 
         listChatDialogs = (ListView) findViewById(R.id.list_chat_dialogs);
+
+        registerForContextMenu(listChatDialogs);
+
         listChatDialogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -179,7 +223,7 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
 
             @Override
             public void onError(QBResponseException e) {
-                Log.e("ERROR", e.getMessage());
+                Log.println(Log.INFO, "Error: ", ""+e.getMessage());
             }
         });
 

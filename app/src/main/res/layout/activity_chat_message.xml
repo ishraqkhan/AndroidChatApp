@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context="com.example.ishraq.androidchatapp.ChatMessageActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/chat_message_toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:titleTextColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.Toolbar>
+    
+    <LinearLayout
+        android:layout_below="@+id/chat_message_toolbar"
+        android:id="@+id/dialog_info"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/dialog_avatar"
+            android:src="@drawable/ic_group"
+            android:layout_width="90dp"
+            android:layout_height="match_parent" />
+        
+        <ImageView
+            android:id="@+id/img_online_count"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        
+        <TextView
+            android:id="@+id/txt_online_count"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <ImageButton
         android:id="@+id/smile_button"
         android:background="@null"
@@ -36,9 +72,7 @@
     <ListView
         android:stackFromBottom="true"
         android:id="@+id/list_of_messages"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dialog_info"
         android:layout_above="@+id/edit_content"
         android:divider="@android:color/transparent"
         android:dividerHeight="16dp"

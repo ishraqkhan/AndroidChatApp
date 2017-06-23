@@ -13,6 +13,12 @@ public class Common {
     //Created class for setting up name of chat dialog, doesn't matter if chat is group chat or private chat now
     public static final String DIALOG_EXTRA = "Dialogs";
 
+    //Add/remove users from group chat
+    public static final String UPDATE_DIALOG_EXTRA = "ChatDialogs";
+    public static final String UPDATE_MODE = "mode";
+    public static final String UPDATE_ADD_MODE = "add";
+    public static final String UPDATE_REMOVE_MODE = "remove";
+
     public static String createDialogName(List<Integer> qbUsers){
         List<QBUser> qbUsers1 = QBUsersHolder.getInstance().getUsersByIds(qbUsers);
         StringBuilder name = new StringBuilder();
